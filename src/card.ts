@@ -2,7 +2,6 @@ import { UserInfo } from "./user_info.ts";
 import { TrophyList } from "./trophy_list.ts";
 import { Trophy } from "./trophy.ts";
 import { Theme } from "./theme.ts";
-import { inject } from "@vercel/analytics";
 
 export class Card {
   private width = 0;
@@ -25,7 +24,6 @@ export class Card {
     userInfo: UserInfo,
     theme: Theme,
   ): string {
-    inject();
     const trophyList = new TrophyList(userInfo);
 
     trophyList.filterByHidden();
@@ -62,7 +60,7 @@ export class Card {
       viewBox="0 0 ${this.width} ${this.height}"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-    >
+    ><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer="defer" src="/_vercel/insights/script.js"></script>
       ${this.renderTrophy(trophyList, theme)}
     </svg>`;
   }
