@@ -2,6 +2,7 @@ import { UserInfo } from "./user_info.ts";
 import { TrophyList } from "./trophy_list.ts";
 import { Trophy } from "./trophy.ts";
 import { Theme } from "./theme.ts";
+import { inject } from "@vercel/analytics";
 
 export class Card {
   private width = 0;
@@ -24,6 +25,7 @@ export class Card {
     userInfo: UserInfo,
     theme: Theme,
   ): string {
+    inject();
     const trophyList = new TrophyList(userInfo);
 
     trophyList.filterByHidden();
